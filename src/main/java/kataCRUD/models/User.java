@@ -1,22 +1,32 @@
 package kataCRUD.models;
 
-import jdk.jfr.Name;
+import jakarta.persistence.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+
+@Entity
+@Table(name = "users")
 public class User {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "name")
     @NotEmpty(message = "Имя не должно быть пустым")
     @Size(min = 2, max = 20, message = "Имя должно быть от 2 до 20 знаков")
     private String name;
 
+    @Column(name = "age")
     @Min(value = 0, message = "Возраст должен быть больше 0")
     private int age;
 
+    @Column(name = "email")
     @NotEmpty(message = "email должен быть не пустым")
     @Email(message = "email введен неправильно")
     private String email;

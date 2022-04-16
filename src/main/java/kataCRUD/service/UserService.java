@@ -1,10 +1,10 @@
-package kataCRUD.dao;
+package kataCRUD.service;
 
 import kataCRUD.models.User;
 
 import java.util.List;
 
-public interface UserDAO {
+public interface UserService {
     List<User> index();
 
     User show(int id);

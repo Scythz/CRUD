@@ -6,14 +6,46 @@
 </head>
 <body>
 
-<div th:each="user : ${users}">
-    <a th:href="@{/users/{id}(id=${user.getId()})}"
-       th:text="${user.getName() + ', ' + user.getAge()}">user</a>
-</div>
+
+<!--<div th:each="user : ${users}">-->
+<!--        <a th:href="@{/{id}(id=${user.getId()})}"-->
+<!--       th:text="${'Id: ' + user.getId() + ' Name: ' + user.getName()}">user</a>-->
+<!--    <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">-->
+<!--        <input type="submit" value="Delete">-->
+<!--    </form>-->
+<!--</div>-->
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Action</th>
+    </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}">ID</td>
+            <td th:text="${user.name}" >Name</td>
+            <td th:text="${user.age}">Age</td>
+            <td th:text="${user.email}">Email</td>
+            <td>
+                <form th:method="GET" th:action="@{/{id}/edit(id=${user.getId()})}">
+                    <input type="submit" value="Edit">
+                </form>
+                <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">
+                    <input type="submit" value="Delete">
+                </form>
+                <br>
+            </td>
+        </tr>
+</table>
+
 
 <br>
 <hr>
-<a href="/users/new">Create new user</a>
+<form th:method="GET" th:action="@{/new}">
+    <input type="submit" value="Create new user">
+</form>
 
 </body>
 </html>
