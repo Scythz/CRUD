@@ -5,6 +5,7 @@ import kataCRUD.models.User;
 import kataCRUD.service.UserService;
 import kataCRUD.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,26 +15,26 @@ import javax.validation.Valid;
 
 
 @Controller
+@ComponentScan(basePackages = "kataCRUD")
 @RequestMapping("/")
 public class UsersController {
 
+    final UserService us;
 
-    private final UserDAOImpl userDAOImpl;
-
-    @Autowired
-    public UsersController(UserDAOImpl userDAOImpl, UserService userService) {
-        this.userDAOImpl = userDAOImpl;
+    public UsersController(UserService us) {
+        this.us = us;
     }
+
 
     @GetMapping()
     public String index(Model model) {
-        model.addAttribute("users", userDAOImpl.index());
+        model.addAttribute("users", us.index());
         return "users/index";
     }
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("user", userDAOImpl.show(id));
+        model.addAttribute("user", us.show(id));
         return "users/show";
     }
 
@@ -47,13 +48,13 @@ public class UsersController {
         if (bindingResult.hasErrors()) {
             return "users/new";
         }
-        userDAOImpl.save(user);
+        us.save(user);
         return "redirect:/";
     }
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("user", userDAOImpl.show(id));
+        model.addAttribute("user", us.show(id));
         return "users/edit";
     }
 
@@ -62,13 +63,13 @@ public class UsersController {
         if (bindingResult.hasErrors()) {
             return "users/edit";
         }
-        userDAOImpl.update(id, user);
+        us.update(id, user);
         return "redirect:/";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
-        userDAOImpl.delete(id);
+        us.delete(id);
         return "redirect:/";
     }
 }
