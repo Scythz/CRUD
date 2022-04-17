@@ -1,9 +1,7 @@
 package kataCRUD.service;
 
 import kataCRUD.dao.UserDAO;
-import kataCRUD.dao.UserDAOImpl;
 import kataCRUD.models.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

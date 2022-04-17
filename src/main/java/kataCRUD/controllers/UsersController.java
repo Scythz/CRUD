@@ -1,10 +1,7 @@
 package kataCRUD.controllers;
 
-import kataCRUD.dao.UserDAOImpl;
 import kataCRUD.models.User;
 import kataCRUD.service.UserService;
-import kataCRUD.service.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
