@@ -23,7 +23,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public User show(int id) {
         return userDAO.show(id);
     }
