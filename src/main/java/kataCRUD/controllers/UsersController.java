@@ -12,7 +12,6 @@ import javax.validation.Valid;
 
 
 @Controller
-@ComponentScan(basePackages = "kataCRUD")
 @RequestMapping("/")
 public class UsersController {
 
