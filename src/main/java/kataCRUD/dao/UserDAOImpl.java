@@ -14,12 +14,12 @@ public class UserDAOImpl implements UserDAO{
     EntityManager em;
 
     @Override
-    public List<User> index() {
+    public List<User> getAllUsers() {
         return em.createQuery("SELECT u from User u", User.class).getResultList();
     }
 
     @Override
-    public User show(int id) {
+    public User getUserById(int id) {
         return em.createQuery("select u from User u where u.id=: param", User.class)
                 .setParameter("param", id).getSingleResult();
     }
@@ -31,7 +31,7 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public void update(int id, User updatedUser){
-        User toBeUpdated = show(id);
+        User toBeUpdated = getUserById(id);
         toBeUpdated.setName(updatedUser.getName());
         toBeUpdated.setAge(updatedUser.getAge());
         toBeUpdated.setEmail(updatedUser.getEmail());

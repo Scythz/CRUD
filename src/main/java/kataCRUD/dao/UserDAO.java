@@ -5,9 +5,9 @@ import kataCRUD.models.User;
 import java.util.List;
 
 public interface UserDAO {
-    List<User> index();
+    List<User> getAllUsers();
 
-    User show(int id);
+    User getUserById(int id);
 
     void save(User user);
 

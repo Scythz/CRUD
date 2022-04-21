@@ -2,7 +2,6 @@ package kataCRUD.controllers;
 
 import kataCRUD.models.User;
 import kataCRUD.service.UserService;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,13 +23,13 @@ public class UsersController {
 
     @GetMapping()
     public String index(Model model) {
-        model.addAttribute("users", us.index());
+        model.addAttribute("users", us.getAllUsers());
         return "users/index";
     }
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("user", us.show(id));
+        model.addAttribute("user", us.getUserById(id));
         return "users/show";
     }
 
@@ -50,7 +49,7 @@ public class UsersController {
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("user", us.show(id));
+        model.addAttribute("user", us.getUserById(id));
         return "users/edit";
     }
 
