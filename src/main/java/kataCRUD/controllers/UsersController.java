@@ -2,6 +2,7 @@ package kataCRUD.controllers;
 
 import kataCRUD.models.User;
 import kataCRUD.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,8 +15,8 @@ import javax.validation.Valid;
 @RequestMapping("/")
 public class UsersController {
 
-    final UserService us;
-
+    private final UserService us;
+    @Autowired
     public UsersController(UserService us) {
         this.us = us;
     }

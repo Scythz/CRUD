@@ -11,7 +11,7 @@ import java.util.List;
 public class UserDAOImpl implements UserDAO{
 
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
 
     @Override
     public List<User> getAllUsers() {
